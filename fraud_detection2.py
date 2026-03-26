@@ -1,4 +1,4 @@
-# 🔥 fraud_detection.py
+# fraud_detection.py
 # Détection de fraude bancaire avec Random Forest + visualisation
 # Version Colab-ready (dataset chargé depuis URL)
 
@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 
 # ---------------------------
-# 1. Charger les données depuis internet
+# Charger les données depuis internet
 # ---------------------------
 url = "https://storage.googleapis.com/download.tensorflow.org/data/creditcard.csv"
 data = pd.read_csv(url)
@@ -19,7 +19,7 @@ print("Dataset loaded. Shape:", data.shape)
 print(data.head())
 
 # ---------------------------
-# 2. Analyse rapide
+# Analyse rapide
 # ---------------------------
 # Vérifier proportion de fraude
 fraud_ratio = data['Class'].value_counts(normalize=True)
@@ -35,7 +35,7 @@ plt.ylabel("Count")
 plt.show()
 
 # ---------------------------
-# 3. Préparer features et target
+# Préparer features et target
 # ---------------------------
 X = data.drop('Class', axis=1)
 y = data['Class']
@@ -45,18 +45,18 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # ---------------------------
-# 4. Modèle Random Forest
+# Modèle Random Forest
 # ---------------------------
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 # ---------------------------
-# 5. Prédictions
+# Prédictions
 # ---------------------------
 y_pred = model.predict(X_test)
 
 # ---------------------------
-# 6. Évaluation
+# Évaluation
 # ---------------------------
 print("\nClassification Report:\n")
 print(classification_report(y_test, y_pred))
@@ -71,7 +71,7 @@ plt.ylabel("Actual")
 plt.show()
 
 # ---------------------------
-# 7. Feature importance
+# Feature importance
 # ---------------------------
 importances = pd.Series(model.feature_importances_, index=X.columns)
 top_features = importances.sort_values(ascending=False).head(10)
